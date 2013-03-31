@@ -11,7 +11,7 @@ desc "update all git based mrbgems"
 task :updategems do
   gitgem.each do |g|
     puts "Updating gem: #{g[:name]}"
-    chdir g[:dir]
+    Dir::chdir g[:dir]
     branch = `git branch`.lines.select {|x| x =~ /^\*/}.first[2..-1]
     sh "git pull origin #{branch}"
     puts
